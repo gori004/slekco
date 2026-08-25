@@ -1,16 +1,37 @@
 import { NextResponse } from "next/server";
-import { products } from "@/lib/products";
+import { prisma } from "@/lib/prisma";
 
 export async function GET(
   _request: Request,
   { params }: { params: Promise<{ slug: string }> }
 ) {
-  const { slug } = await params;
-  const product = products.find((item) => item.slug === slug);
+  try {
+    const { slug } = await params;
 
-  if (!product) {
-    return NextResponse.json({ message: "Product not found" }, { status: 404 });
+    const product = await prisma.product.findUnique({
+      where: {
+        slug,
+      },
+      include: {
+        brand: true,
+        category: true,
+      },
+    });
+
+    if (!product) {
+      return NextResponse.json(
+        { message: "Product not found" },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(product);
+  } catch (error) {
+    console.error("Product API error:", error);
+
+    return NextResponse.json(
+      { message: "Failed to fetch product" },
+      { status: 500 }
+    );
   }
-
-  return NextResponse.json(product);
 }

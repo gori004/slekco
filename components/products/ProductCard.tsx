@@ -20,6 +20,7 @@ export function ProductCard({ product }: { product: Product }) {
             className="card-image object-cover"
             sizes="(max-width: 768px) 50vw, 25vw"
           />
+
           {product.compareAtPrice && (
             <span className="absolute left-3 top-3 rounded-full bg-[var(--accent)] px-3 py-1 text-xs font-bold">
               SALE
@@ -32,9 +33,12 @@ export function ProductCard({ product }: { product: Product }) {
         <div className="flex items-start justify-between gap-3">
           <Link href={`/products/${product.slug}`} className="min-w-0">
             <p className="text-[11px] font-bold uppercase tracking-[.14em] text-neutral-500">
-              {product.brand}
+              {product.brand.name}
             </p>
-            <h3 className="mt-1 truncate font-semibold">{product.name}</h3>
+
+            <h3 className="mt-1 truncate font-semibold">
+              {product.name}
+            </h3>
           </Link>
 
           <button
@@ -47,12 +51,19 @@ export function ProductCard({ product }: { product: Product }) {
         </div>
 
         <div className="mt-2 flex items-center gap-2 text-sm">
-          <span className="font-semibold">₹{product.price.toLocaleString("en-IN")}</span>
+          <span className="font-semibold">
+            ₹{product.price.toLocaleString("en-IN")}
+          </span>
+
           {product.compareAtPrice && (
             <span className="text-neutral-400 line-through">
               ₹{product.compareAtPrice.toLocaleString("en-IN")}
             </span>
           )}
+        </div>
+
+        <div className="mt-1 text-xs text-neutral-500">
+          ★ {product.rating}
         </div>
       </div>
     </article>
