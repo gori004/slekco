@@ -1,51 +1,54 @@
-# Slekco
+# Slekco — Modern Multi-Category E-Commerce
 
-Modern multi-brand ecommerce assessment project.
+Slekco is a modern, responsive multi-category e-commerce experience built as a frontend/backend assessment project.
 
-## Stack
+The application demonstrates product discovery, search, category filtering, product details, cart management, order creation, database integration, API routes, and production deployment.
 
-- Next.js App Router
-- TypeScript
-- Tailwind CSS
-- Zustand
-- Zod
-- Next.js Route Handlers
+## Live Demo
+
+https://slekco-p4m8odzg2-goris-projects-70aad66f.vercel.app
+
+## GitHub Repository
+
+https://github.com/gori004/slekco
+
+---
 
 ## Features
 
-- Responsive ecommerce homepage
+### E-Commerce
+
+- Modern responsive homepage
 - Product listing
-- Search
+- Product search
 - Category filtering
 - Product detail pages
-- Add/remove cart items
-- Quantity controls
-- Persistent cart
-- API integration
-- Basic server validation
+- Add to cart
+- Remove from cart
+- Increase/decrease quantity
+- Cart subtotal and total calculation
+- Checkout/order creation
+- Contact form with validation
+- Responsive navigation
+- Mobile-friendly UI
+- 404 page
+- Error handling
 
-## Run locally
+### Backend
 
-```bash
-npm install
-npm run dev
-```
+- REST-style API routes using Next.js Route Handlers
+- Product API
+- Product detail API
+- Contact API
+- Order API
+- PostgreSQL database
+- Prisma ORM
 
-Open http://localhost:3000.
+### Database
 
-## API
+The application uses PostgreSQL hosted on Neon.
 
-```text
-GET /api/products
-GET /api/products?search=headphones
-GET /api/products?category=Fashion
-GET /api/products/[slug]
-POST /api/contact
-```
-
-## Database plan
-
-For production, connect the existing product model to PostgreSQL using Prisma. Recommended entities:
+Main entities:
 
 - User
 - Brand
@@ -54,30 +57,58 @@ For production, connect the existing product model to PostgreSQL using Prisma. R
 - Order
 - OrderItem
 
-OrderItem should store the purchase-time price.
+---
 
-## Deployment
+## Technology Stack
 
-Recommended: Vercel.
+### Frontend
 
-Add production environment variables such as:
+- Next.js 15
+- React 19
+- TypeScript
+- Tailwind CSS
+- Lucide React
+
+### Backend
+
+- Next.js App Router
+- Next.js Route Handlers
+- Prisma ORM
+- PostgreSQL
+- Neon
+
+### State Management
+
+- Zustand
+
+### Validation
+
+- Zod
+
+### Deployment
+
+- Vercel
+- Neon PostgreSQL
+
+---
+
+## Architecture
+
+The project uses the Next.js App Router architecture.
 
 ```text
-DATABASE_URL=
-NEXT_PUBLIC_APP_URL=
-```
-
-## AI-assisted development
-
-AI tools can be used for scaffolding, debugging, component ideas, API boilerplate, and code review. Any generated code should be reviewed, tested, and modified by the developer.
-
-## Next improvements
-
-- Prisma/PostgreSQL persistence
-- Authentication
-- Wishlist
-- Admin product management
-- Real checkout/payment
-- Inventory management
-- Rate limiting
-- Automated tests
+Browser
+   |
+   v
+Next.js App Router
+   |
+   +----------------------+
+   |                      |
+   v                      v
+React UI              API Routes
+                           |
+                           v
+                       Prisma ORM
+                           |
+                           v
+                    Neon PostgreSQL
