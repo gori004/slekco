@@ -53,6 +53,7 @@ export default async function HomePage() {
             alt="Slekco ecommerce collection"
             fill
             priority
+            unoptimized
             className="object-cover opacity-60"
             sizes="100vw"
           />
@@ -108,6 +109,7 @@ export default async function HomePage() {
                 src={category.image}
                 alt={`${category.name} collection`}
                 fill
+                unoptimized
                 className="object-cover transition duration-500 group-hover:scale-105 group-hover:opacity-75"
                 sizes="(max-width: 768px) 50vw, 25vw"
               />
@@ -154,7 +156,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* NEWSLETTER / CONTACT */}
+      {/* CONTACT / NEWSLETTER */}
       <section className="container-shell py-16">
         <div className="rounded-[2rem] bg-[#deddd8] px-7 py-14 text-center md:px-16">
           <p className="text-xs font-bold uppercase tracking-[.2em] text-neutral-500">
